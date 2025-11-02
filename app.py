@@ -42,7 +42,6 @@ heatmap_fig = px.imshow(
     corr_matrix,
     text_auto=True,
     color_continuous_scale="RdBu_r",
-    title="Correlation Matrix of Student Habits and GPA",
     height=800
 )
 
@@ -110,7 +109,6 @@ app.layout = html.Div([
     Input("x_dropdown", "value")
 )
 def update_scatter(x_var):
-    """Update scatter plot when dropdown changes."""
     fig = px.scatter(
         df, x=x_var, y="GPA",
         color="Stress_Level",
@@ -118,8 +116,21 @@ def update_scatter(x_var):
         title=f"{x_var} vs GPA by Stress Level",
         labels={x_var: x_var.replace("_", " "), "GPA": "GPA"}
     )
+
+    # hover trendline
+    fig.update_traces(
+        hovertemplate=(
+            f"<b>{x_var.replace('_', ' ')}:</b> %{{x:.2f}}<br>"
+            "<b>Predicted GPA:</b> %{y:.2f}<extra></extra>"
+        ),
+        selector=dict(mode="lines")
+    )
+
     fig.update_layout(transition_duration=500)
     return fig
+
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
