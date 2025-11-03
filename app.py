@@ -298,7 +298,7 @@ def update_bubble(x_var, stress_selected, sleep_selected, point_size):
         symbol="Stress_Level",
         symbol_map=STRESS_SYMBOL_MAP,
         hover_data=[c for c in [
-            "Student_ID", "Study_Hours_Per_Day", "Sleep_Hours_Per_Day", "Sleep_Band",
+            "Study_Hours_Per_Day", "Sleep_Hours_Per_Day", "Sleep_Band",
             "Social_Hours_Per_Day", "Physical_Activity_Hours_Per_Day",
             "Extracurricular_Hours_Per_Day", "Stress_Level", "GPA"
         ] if c in d.columns],
