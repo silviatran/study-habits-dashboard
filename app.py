@@ -228,11 +228,25 @@ app.layout = html.Div([
         html.H3("GPA by Stress Level"),
         dcc.Graph(
             figure=px.box(
-                df, x="Stress_Level", y="GPA", color="Stress_Level",
+                df,
+                x="Stress_Level",
+                y="GPA",
+                color="Stress_Level",
+                category_orders={"Stress_Level": ["Low", "Moderate", "High"]},
+                color_discrete_map={
+                    "Low": "#22c55e",
+                    "Moderate": "#eab308",
+                    "High": "#ef4444"  
+                },
                 title="Distribution of GPA by Stress Level"
+            ).update_layout(
+                xaxis_title="Stress Level",
+                yaxis_title="GPA",
+                showlegend=True
             )
         )
     ])
+
 ])
 
 # ================= Callbacks =================
